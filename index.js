@@ -40,6 +40,7 @@ const scrap = require("./scraper/scrap");
       req.continue();
     }
   });
+  await page.setDefaultNavigationTimeout(0);
   // Navigate to first item
   await Promise.all([
     page.mouse.click(138, 380, { button: "left" }),
