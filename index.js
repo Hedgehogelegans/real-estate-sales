@@ -7,7 +7,7 @@ const scrap = require("./scraper/scrap");
   await puppeteer.use(StealthPlugin());
 
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: [
       "--no-sandbox",
       "--disable-setuid-sandbox",
