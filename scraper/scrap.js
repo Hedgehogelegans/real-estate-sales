@@ -33,7 +33,7 @@ async function scrap(page) {
       var sku = await formater.get_sku(page);
       if (sku == 0) {
         try {
-          await page.reload({});
+          await page.reload();
           await page.waitForTimeout(6000);
           sku = await formater.get_sku(page);
         } catch (err) {
