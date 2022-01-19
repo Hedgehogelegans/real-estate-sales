@@ -2,11 +2,11 @@ async function create_table() {
   const { Client } = require('pg');
 
   const client = new Client({
-      host: process.env.HOST,
-      user: process.env.USER,
-      database: process.env.DB,
-      password: process.env.PASSWORD,
-      port: process.env.PORT,
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      database: process.env.DB_NAME,
+      password: process.env.DB_PASSWORD,
+      port: process.env.DB_PORT,
   });
 
   const execute = async (query) => {
@@ -61,11 +61,11 @@ async function post_db(sku, pageTitle, price, latitude, longitude, address, room
 
   const { Client } = require('pg');
   const client = new Client({
-    host: process.env.HOST,
-    user: process.env.USER,
-    database: process.env.DB,
-    password: process.env.PASSWORD,
-    port: process.env.PORT,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
   });
 
   const execute = async (query) => {
