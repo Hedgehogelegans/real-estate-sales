@@ -32,13 +32,21 @@ async function scrap(page) {
           0;
       var sku = await formater.get_sku(page);
       if (sku == 0) {
-        await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
-        await page.waitForTimeout(6000);
-        sku = await formater.get_sku(page);
+        try {
+          await page.reload({});
+          await page.waitForTimeout(6000);
+          sku = await formater.get_sku(page);
+        } catch (err) {
+          console.log("Retry sku 1", err);
+        }
       } else if (sku == 0) {
-        await page.keyboard.press("ArrowRight");
-        await page.waitForTimeout(6000);
-        sku = await formater.get_sku(page);
+        try {
+          await page.keyboard.press("ArrowRight");
+          await page.waitForTimeout(6000);
+          sku = await formater.get_sku(page);
+        } catch (err) {
+          console.log("Retry sku 2", err);
+        }
       }
       console.log(i + " - " + sku);
       var pageTitle = await formater.get_title(page);
