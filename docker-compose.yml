@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  realestatesales:
+    container_name: real-estate-sales
+    image: realestatesales
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8084:8084
+
+    network_mode: "host"
