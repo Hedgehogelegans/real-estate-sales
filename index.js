@@ -10,17 +10,9 @@ const scrap = require("./scraper/scrap");
 
     const browser = await puppeteer.launch({
         headless: false,
-        args: ["--disable-setuid-sandbox",
-            "--no-sandbox",
-            "--window-size=1920,1080",
-            "--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36",
-            "--disable-web-security",
-            "--full-memory-crash-report",
-            "--enable-crash-reporter",
-            "--crash-dumps-dir=/tmp/chrome",
-            "--unlimited-storage",
-            "--ignore-certificate-errors",
-            "--disable-dev-shm-usage",
+        args: ["--no-sandbox", "--disable-setuid-sandbox",
+        "--window-size=1200,800",
+        "--user-data-dir='/var/tmp/Chrome'", "--disable-web-security", "--allow-running-insecure-content",
         ],
         'ignoreHTTPSErrors': true
     });;

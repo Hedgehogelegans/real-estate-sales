@@ -32,4 +32,4 @@ RUN apt-get install -y x11vnc xvfb
 # RUN chmod +x entrypoint.sh
 # ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 
-CMD ["index.js"]
+CMD ["/bin/sh", "run.sh"]
