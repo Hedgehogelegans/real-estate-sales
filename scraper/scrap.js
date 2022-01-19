@@ -32,8 +32,12 @@ async function scrap(page) {
           0;
       var sku = await formater.get_sku(page);
       if (sku == 0) {
+        await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] });
+        await page.waitForTimeout(6000);
+        sku = await formater.get_sku(page);
+      } else if (sku == 0) {
         await page.keyboard.press("ArrowRight");
-        await page.waitForTimeout(4000);
+        await page.waitForTimeout(6000);
         sku = await formater.get_sku(page);
       }
       console.log(i + " - " + sku);

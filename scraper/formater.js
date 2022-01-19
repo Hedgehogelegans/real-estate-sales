@@ -1,3 +1,5 @@
+let log = false;
+
 async function get_title(page) {
   var value = 0;
   try {
@@ -10,7 +12,9 @@ async function get_title(page) {
     );
     value = await page.evaluate((el) => el.textContent, element);
   } catch (err) {
-    console.log("Cannot read title => : ", err);
+    if (log == true) {
+      console.log("Cannot read title");
+    }
   }
   return value;
 }
@@ -25,7 +29,9 @@ async function get_price(page) {
       text.replace("$", "").replace(/ /g, "").replace(/\s/g, "").trim()
     );
   } catch (err) {
-    console.log("Cannot read price => : ", err);
+    if (log == true) {
+      console.log("Cannot read price");
+    }
   }
   return value;
 }
@@ -40,7 +46,9 @@ async function get_sku(page) {
       text.replace(/ /g, "").replace(/\s/g, "").trim()
     );
   } catch (err) {
-    console.log("Cannot read sku => : ", err);
+    if (log == true) {
+      console.log("Cannot read sku");
+    }
   }
   return value;
 }
@@ -55,7 +63,9 @@ async function get_latitude(page) {
     var raw = await inner_html.split("data-lat=")[1].split('"')[1];
     var value = await parseFloat(raw);
   } catch (err) {
-    console.log("Cannot read latitude => : ", err);
+    if (log == true) {
+      console.log("Cannot read latitude");
+    }
   }
   return value;
 }
@@ -70,7 +80,9 @@ async function get_longitude(page) {
     var raw = await inner_html.split("data-lng=")[1].split('"')[1];
     var value = await parseFloat(raw);
   } catch (err) {
-    console.log("Cannot read longitude => : ", err);
+    if (log == true) {
+      console.log("Cannot read longitude");
+    }
   }
   return value;
 }
@@ -86,7 +98,9 @@ async function get_address(page) {
     );
     var value = await page.evaluate((el) => el.textContent, element);
   } catch (err) {
-    console.log("Cannot read address => : ", err);
+    if (log == true) {
+      console.log("Cannot read address");
+    }
   }
   return value;
 }
@@ -112,7 +126,9 @@ async function get_rooms(page) {
         .trim()
     );
   } catch (err) {
-    console.log("Cannot read rooms => : ", err);
+    if (log == true) {
+      console.log("Cannot read rooms");
+    }
   }
   return value;
 }
@@ -128,7 +144,9 @@ async function get_bedrooms(page) {
     );
     var value = parseInt(elements[0].replace(" chambre", "").replace("s", ""));
   } catch (err) {
-    console.log("Cannot read bedrooms => : ", err);
+    if (log == true) {
+      console.log("Cannot read bedrooms");
+    }
   }
   return value;
 }
@@ -164,7 +182,9 @@ async function get_bathrooms(page) {
       );
     }
   } catch (err) {
-    console.log("Cannot read bathrooms => : ", err);
+    if (log == true) {
+      console.log("Cannot read bathrooms");
+    }
   }
   return value;
 }
@@ -191,7 +211,9 @@ async function get_carac(page) {
               .replace(" ", "")
           );
         } catch (error) {
-          console.log("Cannot read gross area => : ", err);
+          if (log == true) {
+            console.log("Cannot read gross area");
+          }
           gross_area = 0;
         }
       } else if (element.includes("Superficie du terrain")) {
@@ -203,7 +225,9 @@ async function get_carac(page) {
               .replace(" ", "")
           );
         } catch (error) {
-          console.log("Cannot read lot area => : ", err);
+          if (log == true) {
+            console.log("Cannot read lot area");
+          }
           lot_area = 0;
         }
       } else if (element.includes("Année de construction")) {
@@ -214,7 +238,9 @@ async function get_carac(page) {
               .replace(", En conversion", "")
           );
         } catch (error) {
-          console.log("Cannot read year => : ", err);
+          if (log == true) {
+            console.log("Cannot read year");
+          }
           year = 0;
         }
         if (isNaN(year)) {
@@ -227,7 +253,9 @@ async function get_carac(page) {
             .replace(/[\n\r]+|[\s]{2,}/g, " ")
             .trim();
         } catch (error) {
-          console.log("Cannot read copro type => : ", err);
+          if (log == true) {
+            console.log("Cannot read copro type");
+          }
           type = 0;
         }
       } else if (element.includes("Stationnement total")) {
@@ -250,7 +278,9 @@ async function get_carac(page) {
               unit += parseInt(item);
             }
           } catch (error) {
-            console.log("Cannot read number of units => : ", err);
+            if (log == true) {
+              console.log("Cannot read number of units");
+            }
             type = 0;
           }
         } else {
@@ -264,14 +294,16 @@ async function get_carac(page) {
                 .replace(")", "")
             );
           } catch (error) {
-            console.log("Cannot read number of units => : ", err);
+            if (log == true) {
+              console.log("Cannot read number of units");
+            }
             type = 0;
           }
         }
       }
     });
   } catch (err) {
-    console.log("Error with caracteristics => : ", err);
+    console.log("Error with caracteristics");
   }
 
   return { gross_area, lot_area, year, type, parking, unit };
