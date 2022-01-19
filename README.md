@@ -1,8 +1,8 @@
-# Real estate sales scraper.
+# Real estate sales scraper
 
- ## Overview
+## Overview
 
-Real estate scraper that extract data such as type of property, price, number of rooms, location. Data is then stored in a PostgreSQL database for further analysis.
+Real estate sales scraper that extract data such as type of property, price, number of rooms, location. Data is then stored in a PostgreSQL database for further analysis.
 
 ### Docker Compose
 
