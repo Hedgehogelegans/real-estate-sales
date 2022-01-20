@@ -10,6 +10,7 @@ RUN apt-get update
 RUN apt-get -y install libpangocairo-1.0-0 libx11-xcb1 libxcomposite1 libxcursor1 libxdamage1 libxi6 libxtst6 libnss3 libcups2 libxss1 libxrandr2 libasound2 libatk1.0-0 libgtk-3-0 libdrm2 libgbm1
 RUN apt install -y xvfb
 RUN apt-get install tightvncserver -y
+
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
@@ -26,10 +27,5 @@ RUN npm install puppeteer-extra-plugin-stealth
 COPY . .
 EXPOSE 8080
 RUN apt-get install -y x11vnc xvfb 
-# RUN mkdir ~/.vnc
-# RUN x11vnc -storepasswd 1234 ~/.vnc/passwd
-# COPY entrypoint.sh /entrypoint.sh
-# RUN chmod +x entrypoint.sh
-# ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
 
 CMD ["/bin/sh", "run.sh"]
